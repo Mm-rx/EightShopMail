@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.eight.mapper.CartMapper">
+
+    <!-- 插入购物车数据 -->
+    <!-- Integer insert(Cart cart) -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="cartId">
+    INSERT INTO order_cart (
+      cartId, userId, productId, productTotalAmount, price,
+      addTime, modifiedTime
+    ) VALUES (
+      #{cartId}, #{userId}, #{productId}, #{productTotalAmount}, #{price},
+      #{addTime}, #{modifiedTime}
+    )
+  </insert>
+
+    <!-- 修改购物车中商品的数量 -->
+    <!-- Integer updateAmountByCid(
+        @Param("userId") Integer userId,
+        @Param("cartId") Integer cartId,
+        @param("productId") Integer productId,
+        @Param("productTotalAmount") Integer productTotalAmount,
+        @Param("modifiedTime") Date modifiedTime
+    ); -->
+    <update id="updateAmountByCid">
+    UPDATE
+      order_cart
+    SET
+      productTotalAmount=#{productTotalAmount},
+      userId=#{userId},
+      modifiedTime=#{modifiedTime}
+    WHERE
+      cartId=#{cartId}
+  </update>
+
+    <!-- 查询某用户在购物车添加的某商品的详情 -->
+    <!-- Cart findByUidAndPid(
+        @Param("userId") Integer userId,
+        @Param("productId") Integer productId
+    ); -->
+    <select id="findByUidAndPid" resultType="src.main.java.com.eight.bean.OrderCart">
+    SELECT * FROM order_art WHERE userId=#{userId} AND productId=#{productId}
+  </select>
+
+</mapper>
+        <!-- 查询某用户的购物车列表 -->
+        <!-- List<CartVO> findByUid(Integer uid) -->
+<select id="findByUid" resultType="">
+    SELECT
+      cart_id, user_id, product_id, OrderCart.productToatalAmount, OrderCart.price,
+      ProductCategory.price AS realPrice, image
+    FROM
+      order_cart
+    LEFT JOIN
+      product_category
+    ON
+      order_cart.product_id=product_category.product_id
+    WHERE
+      user_id=#{user_id}
+    ORDER BY
+      order_cart.created_time DESC
+  </select>

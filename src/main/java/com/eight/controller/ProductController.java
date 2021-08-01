@@ -31,7 +31,7 @@ public class ProductController {
         return null;
     }
 
-    @RequestMapping(value = "/catrgory/*", method = RequestMethod.GET)
+    @RequestMapping(value = "/ProductCategory/*", method = RequestMethod.GET)
     @ResponseBody
     public List<ProductInfo> queryProductInfosByCategory(String catrgoryId) {
         return productService.queryProductInfoByCategory(catrgoryId);

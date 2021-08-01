@@ -7,7 +7,7 @@ public class OrderCart {
     // 购物车ID
     private Long cartId;
     // 用户ID
-    private Long userId;
+    private int userId;
     // 商品ID
     private Long productId;
     // 加入购物车商品数量
@@ -24,7 +24,7 @@ public class OrderCart {
     }
 
     // 有参构造器，进行属性值的初始化
-    public OrderCart(Long cartId, Long userId, Long productId, Integer productTotalAmount, BigDecimal price, Timestamp addTime, Timestamp modifiedTime) {
+    public OrderCart(Long cartId, int userId, Long productId, Integer productTotalAmount, BigDecimal price, Timestamp addTime, Timestamp modifiedTime) {
         this.cartId = cartId;
         this.userId = userId;
         this.productId = productId;
@@ -45,12 +45,12 @@ public class OrderCart {
     }
 
     // 获取 用户ID 的属性值
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
     // 设置 用户ID 的属性值
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

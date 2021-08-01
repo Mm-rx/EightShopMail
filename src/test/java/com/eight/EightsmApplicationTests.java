@@ -15,7 +15,7 @@ class EightsmApplicationTests {
     }
     @Test
     public void queryUsernameAndPassword(){
-        User user = userService.queryUserByUsername("kele");
+        User user = userService.queryUserByUsername("meng");
         System.out.println("running ..." + user);
     }
 
